@@ -8,7 +8,7 @@
   <label for="new_tag">New Tag Name</label>
   <input type="text" name="new_tag" id='new_tag' required>
   <button type="submit" class="btn green">Save</button>
-</form>
+</form><br><br>
 <form action="/tags/<%= @tags.id %>" method="post" class="left delete-form">
  <input name="_method" type="hidden" value="delete">
  <button type="submit" class="btn red right">Delete</button>
