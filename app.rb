@@ -39,15 +39,25 @@ post('/recipes') do
   new_rating = params['rating']
   new_tag = Tag.find(params['tag_id'].to_i)
   #creates new recipe with data it fetched above
-  @recipes = Recipe.create({:name => new_name, :ingredients => new_ingedients, :instructions => new_instructions, :ratings => new_rating})
-  #pushes new tag to the recipe you just created
-  @recipes.tags.push(new_tag)
+  @recipes = Recipe.new({:name => new_name, :ingredients => new_ingedients, :instructions => new_instructions, :ratings => new_rating})
   if @recipes.save
+      #pushes new tag to the recipe you just created
+    @recipes.tags.push(new_tag)
   redirect "/recipes"
   else
     erb(:errors)
   end
 end
+##Old - creates new recipe with data it fetched above
+# @recipes = Recipe.create({:name => new_name, :ingredients => new_ingedients, :instructions => new_instructions, :ratings => new_rating})
+# #pushes new tag to the recipe you just created
+# @recipes.tags.push(new_tag)
+# if @recipes.save
+# redirect "/recipes"
+# else
+#   erb(:errors)
+# end
+# end
 
 #update recipe
 patch('/recipe/:id') do
@@ -79,8 +89,12 @@ end
 post('/tags') do
   new_tag = params['tag']
   #create a new tag with the value in the form and name it @tag
-  @tag = Tag.create({:name  => new_tag})
-  redirect "/"
+  @tag = Tag.new({:name  => new_tag})
+  if @tag.save
+    redirect "/"
+  else
+    erb(:errors2)
+  end
 end
 
 #tags - multiple
