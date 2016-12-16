@@ -1,0 +1,41 @@
+<h3>Welcome</h3>
+<br>
+
+<!-- Create a tag/category -->
+<h5>Create a category for your recipe to be saved under</h5>
+<form action="/tags" method="post">
+  <label for="tag">New Tag</label>
+  <input type="text" name="tag" id="tag" placeholder="ex. Desert" required>
+  <button type="submit" name="button" class="btn">Create Tag</button>
+</form>
+<br>
+
+<!-- Create a new recipe -->
+<h5>Create a new Recipe</h5>
+<form action="/recipes" method="post">
+  <div class="form-group">
+    <label for="new-recipe-name">New Recipe Name</label>
+    <input type="text" class="validate" name="recipe-name" id="new-recipe-name" required><br>
+
+    <label for="new-ingedients">All Ingedients</label>
+    <input type="text" class="validate" name="ingedients" id="new-ingedients" required><br>
+
+    <label for="new-instructions">All Instructions</label>
+    <input type="text" class="validate" name="instructions" id="new-instructions" required><br>
+
+    <label for="new-rating">Your Rating</label>
+    <input type="text" class="validate" name="rating" id="new-rating" placeholder="3.5" required><br>
+
+    <label>Select a Tag</label><br>
+    <!-- Select box that loops all the tags down options -->
+    <% if @tags.any?() %>
+      <select name="tag_id" class="browser-default">
+        <option value=""></option>
+        <% @tags.each() do |tag| %>
+          <option value="<%= tag.id()%>"><%= tag.name() %></option>
+        <% end %>
+      </select><br><br>
+    <% end %>
+  </div>
+  <button class="btn" type="submit">Create Recipe</button>
+</form>

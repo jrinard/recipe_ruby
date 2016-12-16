@@ -1,0 +1,15 @@
+<h3><%= @tags.name %></h3>
+
+<i>Rename your tag</i>
+<br><br>
+
+<form action="/tags/<%= @tags.id %>" method="post">
+  <input name="_method" type="hidden" value="patch">
+  <label for="new_tag">New Tag Name</label>
+  <input type="text" name="new_tag" id='new_tag'>
+  <button type="submit" class="btn green">Save</button>
+</form>
+<form action="/tags/<%= @tags.id %>" method="post" class="left delete-form">
+ <input name="_method" type="hidden" value="delete">
+ <button type="submit" class="btn red right">Delete</button>
+</form>

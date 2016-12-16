@@ -1,0 +1,18 @@
+<h3>Tag List</h3>
+<br>
+
+<% if @tags.any?() %>
+  <h5>Here are your tags:</h5>
+  <i>Select a specific tag to modify it</i>
+
+  <ul>
+    <% @tags.each() do |tag| %>
+      <li><a href="/tags/<%= tag.id()%>"><span class="med"><h5><%= tag.name() %></h5></span></a></li>
+    <% end %>
+  </ul>
+
+<% else %>
+
+    <p>There are no tags yet!</p>
+
+<% end %>

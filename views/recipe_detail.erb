@@ -1,0 +1,54 @@
+<!-- recipe details -->
+
+<h3><%= @recipes.name %></h3>
+
+<br>
+<h5>Ingredients: <span class="med"><%= @recipes.ingredients %></span></h5>
+<h5>Instructions: <span class="med"><%= @recipes.instructions %></span></h5>
+<h5>Rating: <span class="med"><%= @recipes.ratings %></span></h5>
+
+<h5>Tags: <span class="med">
+<% if @tags.any? %>
+<% @tags.each do |tag| %>
+  <%= tag.name %>
+  <% end %>
+<% end %>
+</span></h5>
+
+<!-- Delete Recipe -->
+<form action="/recipe/<%= @recipes.id %>" method="post" class="right delete-form">
+ <input name="_method" type="hidden" value="delete">
+ <button type="submit" class="btn red right">Delete Recipe</button>
+</form>
+<br>
+
+<!-- update Recipe name -->
+<h5>Update Recipe</h5>
+    <form action="/recipe/<%= @recipes.id() %>" method="post" required>
+      <input name="_method" type="hidden" value="patch">
+
+      <label for="new-name">Update Recipe Name</label>
+      <input id="new-name" name="new-name" type="text" required><br>
+
+      <label for="new-ingedients">Update Ingredients</label>
+      <input id="new-ingedients" name="new-ingedients" type="text" required><br>
+
+      <label for="new-instructions">Update Intructions</label>
+      <input id="new-instructions" name="new-instructions" type="text" required><br>
+
+      <label for="new-rating">Update Rating</label>
+      <input id="new-rating" name="new-rating" type="text" required><br>
+
+      <label>Select a Tag</label><br>
+
+      <% if @alltags.any?() %>
+        <select name="tag_id" class="browser-default" required>
+          <option value=""></option>
+          <% @alltags.each() do |tag| %>
+            <option value="<%= tag.id()%>"><%= tag.name() %></option>
+          <% end %>
+        </select><br><br>
+      <% end %>
+
+      <button type="submit" class="btn">Update</button>
+    </form>

@@ -1,0 +1,15 @@
+<h3>Recipe List</h3>
+<br>
+<!-- List all recipes with a loop -->
+<% if @recipes.any?() %>
+  <h5>Here are your recipes:</h5>
+
+  <ul>
+    <% @recipes.each() do |recipe| %>
+      <li><a href="/recipe/<%= recipe.id()%>"><span class="med"><h5><%= recipe.name() %></h5></span></a></li>
+    <% end %>
+  </ul>
+
+<% else %>
+    <p>There are no recipes yet!</p>
+<% end %>
