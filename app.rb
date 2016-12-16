@@ -11,7 +11,6 @@ after do
   ActiveRecord::Base.clear_active_connections!
 end
 
-
 #home route
 get('/') do
   @tags = Tag.all() #grabs all tags and makes them available

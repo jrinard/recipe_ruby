@@ -3,11 +3,11 @@
 <h3><%= @recipes.name %></h3>
 
 <br>
-<h5>Ingredients: <span class="med"><%= @recipes.ingredients %></span></h5>
-<h5>Instructions: <span class="med"><%= @recipes.instructions %></span></h5>
-<h5>Rating: <span class="med"><%= @recipes.ratings %></span></h5>
+<h5>Ingredients: <span class="med teal-text"><%= @recipes.ingredients %></span></h5>
+<h5>Instructions: <span class="med teal-text"><%= @recipes.instructions %></span></h5>
+<h5>Rating: <span class="med teal-text"><%= @recipes.ratings %></span></h5>
 
-<h5>Tags: <span class="med">
+<h5>Tags: <span class="med teal-text">
 <% if @tags.any? %>
 <% @tags.each do |tag| %>
   <%= tag.name %>
