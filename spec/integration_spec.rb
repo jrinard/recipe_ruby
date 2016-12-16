@@ -4,7 +4,7 @@ Capybara.app = Sinatra::Application
 set(:show_exceptions, false)
 
 
-describe('Recipe Route', {:type => :feature}) do
+describe('Main Route', {:type => :feature}) do
   describe('Create Tag') do
     it "allows user to create a tag" do
       visit('/')
@@ -25,21 +25,42 @@ describe('Recipe Route', {:type => :feature}) do
       expect(page).to have_content 'Recipe List'
     end
   end
-  # 
+
+  describe('show a recipe') do
+    it "allows user to view individual recipe" do
+      Recipe.create({:name => 'Cookies', :ingredients => 'Flour sugar milk', :instructions => "cook", :ratings => 5.1})
+      visit("/recipes")
+      expect(page).to have_content 'Cookies'
+    end
+  end
+
+  describe('show a specific recipe') do
+    it "allows user to view individual recipe" do
+      rec = Recipe.create({:name => 'Cookies', :ingredients => 'Flour sugar milk', :instructions => "cook", :ratings => 5.1})
+      visit("/recipe/#{rec.id}")
+      expect(page).to have_content 'Cookies'
+    end
+  end
+
   # describe('Modify a recipe', {:type => :feature}) do
-  #   # it "allows user to update a recipe" do
-  #   #   recipe = Recipe.create({:name => "Pizza"})
-  #   #   visit("/recipes/#{recipe.id}")
-  #   #   fill_in('new-name', :with => "Pepperoni")
-  #   #   click_button("Update")
-  #   #   expect(page).to have_content 'Pepperoni'
-  #   # end
-  #   it "allows user to delete a recipe" do
-  #     recipe = Recipe.create({:name => "Pizza"})
-  #     visit("/recipes/#{recipe.id}")
-  #     click_button("Delete Recipe")
-  #     expect(page).not_to have_content 'Pizza'
+  #   it "allows user to update a recipe" do
+  #     rec = Recipe.create({:name => 'Cookies', :ingredients => 'Flour sugar milk', :instructions => "cook", :ratings => 5.1})
+  #     visit("/recipe/#{rec.id}")
+  #     fill_in('new-name', :with => "Pepperoni")
+  #     fill_in('new-ingedients', :with => "Pepperoni")
+  #     fill_in('new-instructions', :with => "Pepperoni")
+  #     fill_in('new-rating', :with => "Pepperoni")
+  #     Tag.create({:name => "Dinner"})
+  #     fill_in('tag_id', :with => "Dinner")
+  #     click_button("Update")
+  #     expect(page).to have_content 'Pepperoni'
   #   end
+  # #   it "allows user to delete a recipe" do
+  # #     recipe = Recipe.create({:name => "Pizza"})
+  # #     visit("/recipes/#{recipe.id}")
+  # #     click_button("Delete Recipe")
+  # #     expect(page).not_to have_content 'Pizza'
+  # #   end
   # end
 
   describe('Modify a Tag', {:type => :feature}) do

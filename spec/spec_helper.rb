@@ -9,7 +9,6 @@ RSpec.configure do |config|
   config.before(:each) do
 
     Recipe.destroy_all
-
     Tag.destroy_all
   end
 end
